@@ -171,8 +171,11 @@ Possible internal stats are::
 --integer::
     force integer values on screen (mutual exclusive with *--float*)
 
---bw, --blackonwhite::
+--bw, --blackonwhite, --black-on-white::
     change colors for white background terminal
+
+--wb, --whiteonblack, --white-on-black::
+    drop blue colors for black background terminal
 
 --nocolor::
     disable colors

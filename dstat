@@ -52,6 +52,7 @@ class Options:
         self.args = args
         self.bits = False
         self.blackonwhite = False
+        self.whiteonblack = False
         self.count = -1
         self.cpulist = None
         self.debug = 0
@@ -91,7 +92,8 @@ class Options:
 
         try:
             opts, args = getopt.getopt(args, 'acdfghilmno:prstTvyC:D:I:M:N:S:V',
-                ['all', 'all-plugins', 'bits', 'bw', 'black-on-white', 'color',
+                ['all', 'all-plugins', 'bits', 'bw', 'black-on-white', 'blackonwhite',
+                 'wb', 'white-on-black', 'whiteonblack', 'color',
                  'debug', 'filesystem', 'float', 'full', 'help', 'integer',
                  'list', 'mods', 'modules', 'nocolor', 'noheaders', 'noupdate',
                  'output=', 'pidfile=', 'profile', 'version', 'vmstat'] + allplugins)
@@ -158,6 +160,8 @@ class Options:
                 self.bits = True
             elif opt in ['--bw', '--black-on-white', '--blackonwhite']:
                 self.blackonwhite = True
+            elif opt in ['--wb', '--white-on-black', '--whiteonblack']:
+                self.whiteonblack = True
             elif opt in ['--color']:
                 self.color = True
                 self.update = True
@@ -1789,6 +1793,10 @@ char = {
 }
 
 def set_theme():
+    if op.whiteonblack:
+        color['darkblue'] = color['white']
+        color['blue'] = color['white']
+
     "Provide a set of colors to use"
     if op.blackonwhite:
         theme = {
